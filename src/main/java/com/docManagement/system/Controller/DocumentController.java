@@ -35,3 +35,47 @@ public class DocumentController {
                 .body(created);
     }
 }
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Document> update(@PathVariable Long id, @RequestBody Document doc) {
+        Document updated = service.update(id, doc);
+        return ResponseEntity.ok(updated);
+    }
+
+}
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
+    @GetMapping
+    public List<Document> list() {
+        return service.listAll();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Document> get(@PathVariable Long id) {
+        Document doc = service.getById(id);
+        return ResponseEntity.ok(doc);
+    }
+
+
+
+    // Total number of documents
+    @GetMapping("/total")
+    public long getTotalDocuments() {
+        return service.totalDocuments();
+    }
+
+    // Category-wise count
+    @GetMapping("/category-count")
+    public List<Map<String, Object>> getCategoryWiseCount() {
+        return service.categoryWiseCount();
+    }
+
+
+}
