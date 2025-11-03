@@ -27,9 +27,11 @@ public class DocumentController {
     public DocumentController(DocumentService service) {
         this.service = service;
     }
+
     @PostMapping
     public ResponseEntity<Document> create(@RequestBody Document doc) {
         Document created = service.create(doc);
         return ResponseEntity.created(URI.create("/api/documents/" + created.getId()))
                 .body(created);
     }
+}
