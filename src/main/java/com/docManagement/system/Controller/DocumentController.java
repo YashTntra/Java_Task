@@ -29,6 +29,13 @@ public class DocumentController {
     }
 
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
     @GetMapping
     public List<Document> list() {
         return service.listAll();
@@ -53,5 +60,6 @@ public class DocumentController {
     public List<Map<String, Object>> getCategoryWiseCount() {
         return service.categoryWiseCount();
     }
+
 
 }
