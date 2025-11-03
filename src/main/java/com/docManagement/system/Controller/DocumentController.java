@@ -29,6 +29,16 @@ public class DocumentController {
     }
 
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Document> update(@PathVariable Long id, @RequestBody Document doc) {
+        Document updated = service.update(id, doc);
+        return ResponseEntity.ok(updated);
+    }
+
+}
+
+
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
@@ -63,3 +73,4 @@ public class DocumentController {
 
 
 }
+
